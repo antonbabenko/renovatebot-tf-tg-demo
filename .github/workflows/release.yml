@@ -6,9 +6,10 @@ on:
     branches:
       - main
       - master
-#    paths:
-#      - '**/*.py'
-#      - '**/*.sh'
+    paths:
+      - '**/*.py'
+      - '**/*.sh'
+      - '*'
 
 jobs:
   release:
