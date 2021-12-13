@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [4.0.0](https://github.com/antonbabenko/pr-title-tests/compare/v3.0.0...v4.0.0) (2021-12-13)
+
+
+### Bug Fixes
+
+* Something small but breaking ([#7](https://github.com/antonbabenko/pr-title-tests/issues/7)) ([35d90d0](https://github.com/antonbabenko/pr-title-tests/commit/35d90d034a62c72f8c5052bf50d58dbe149f90b5))
+
+
+### BREAKING CHANGES
+
+* This is a breaking change... but type is fix
+Change 2
+Change 3
+
 # [3.0.0](https://github.com/antonbabenko/pr-title-tests/compare/v2.0.0...v3.0.0) (2021-12-13)
 
 
