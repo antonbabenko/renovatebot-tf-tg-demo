@@ -63,11 +63,11 @@
         // source = "tfr:///terraform-aws-modules/s3-bucket/aws//wrappers?version=3.0.0"
         "source\\s*=\\s*\"tfr://(?<registry>.*?)/(?<org>.+?)/(?<name>.+?)/(?<cloud>.+?)(?:/.+?)?\\?version=(?<currentValue>.*?)\""
       ],
-      "depType": "terragrunt",
+//      "depType": "terragrunt",
       "datasourceTemplate": "terraform-module",
       "depNameTemplate": "{{org}}/{{name}}/{{cloud}}",
       "lookupNameTemplate": "{{org}}/{{name}}/{{cloud}}",
-      "registryUrls": ['{{#if registry}}{{registry}}{{else}}https://registry.terraform.io{{/if}}']
+//      "registryUrls": ['{{#if registry}}{{registry}}{{else}}https://registry.terraform.io{{/if}}']
     }
   ]
 }
