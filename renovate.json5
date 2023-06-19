@@ -58,7 +58,7 @@
     {
       "fileMatch": ["\\.tf$", ".hcl$"],
       "matchStrings": [
-        // source = "tfr:///terraform-aws-modules/s3-bucket/aws//wrappers?version=3.0.0"
+        // source = "git::git@github.com:terraform-aws-modules/terraform-aws-s3-bucket.git//wrappers?ref=v1.17.0"
         // "source\\s*=\\s*\".*?github\\.com[/:](?:(?<prefix>terraform)-(?<cloud>.+?)-)?(?<name>.+?)(?:\\.git)?(?:/.*?)?\\?ref=(?<currentValue>.*?)\""
         // source = "tfr:///terraform-aws-modules/s3-bucket/aws//wrappers?version=3.0.0"
         "source\\s*=\\s*\"tfr://(?<registryUrl>.*?)/(?<org>.+?)/(?<name>.+?)/(?<cloud>.+?)(?:/.+?)?\\?version=(?<currentValue>.*?)\""
