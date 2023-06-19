@@ -1,0 +1,73 @@
+{
+  "extends": [
+    // Default base configuration for all languages.
+    // https://docs.renovatebot.com/presets-config/#configbase
+    "config:base",
+    // Group various lint packages together.                                  | https://docs.renovatebot.com/presets-group/#grouplinters
+    "group:linters",
+    // Pin GitHub Action digests.                                             | https://docs.renovatebot.com/presets-helpers/#helperspingithubactiondigests
+    "helpers:pinGitHubActionDigests",
+    // Separate each Major version of dependencies into individual PRs.       | https://docs.renovatebot.com/presets-default/#separatemultiplemajorreleases
+    ":separateMultipleMajorReleases",
+    // Upgrade to unstable versions only if the existing version is unstable. | https://docs.renovatebot.com/presets-default/#ignoreunstable
+    ":ignoreUnstable",
+    // Use semantic prefixes for commit messages and PR titles.               | https://docs.renovatebot.com/presets-default/#semanticcommits
+    ":semanticCommits",
+    // If Renovate detects semantic commits, it will use semantic
+    // commit type `fix` for dependencies and `chore` for all others.         | https://docs.renovatebot.com/presets-default/#semanticprefixfixdepschoreothers
+    ":semanticPrefixFixDepsChoreOthers",
+    // Update `_VERSION` environment variables in GitHub Action files.        | https://docs.renovatebot.com/presets-regexManagers/#regexmanagersgithubactionsversions
+    "regexManagers:githubActionsVersions",
+    // Preserve (but continue to upgrade) any existing SemVer ranges.         | https://docs.renovatebot.com/presets-default/#preservesemverranges
+    ":preserveSemverRanges",
+  ],
+
+  // Dependency Dashboard issue customization.                                | https://docs.renovatebot.com/configuration-options/#dependencydashboard
+  "dependencyDashboardTitle": "Renovate Dependency Dashboard",
+  "dependencyDashboardLabels": ["auto-update"],
+  "dependencyDashboardHeader": "This issue lists Renovate updates and detected dependencies. Read the [Dependency Dashboard](https://docs.renovatebot.com/key-concepts/dashboard/) docs to learn more.<br>Renovate logs for debug [here](https://developer.mend.io/{{platform}}/{{repository}}).",
+  // Wait at least 3 days for possible fixes before creating a branch/PR.     | https://docs.renovatebot.com/configuration-options/#minimumreleaseage
+  "minimumReleaseAge": "3 days",
+  // Create PRs to roll back versions
+  // if the current version is not found in the registry.                     | https://docs.renovatebot.com/configuration-options/#rollbackprs
+  "rollbackPrs": true,
+  // All matched addLabels strings will be attached to the PR.                | https://docs.renovatebot.com/configuration-options/#addlabels
+  "addLabels": [
+    "auto-update",
+  ],
+  // Sometimes you need to change your Renovate configuration.
+  // To help with this, Renovate will create config migration pull requests.  | https://docs.renovatebot.com/configuration-options/#configmigration
+  "configMigration": true,
+  // Renovate will wait until status checks have been completed
+  // (passed or failed) before raising the PR."                               | https://docs.renovatebot.com/configuration-options/#prcreation
+  "prCreation": "not-pending",
+
+  // Terraform manager custom settings                                        | https://docs.renovatebot.com/modules/manager/terraform/
+  "terraform": {
+    "ignorePaths": [
+      "**/examples/**",
+    ],
+    "pinDigests": true, // Make versions idempotent
+  },
+
+//  "terragrunt": {
+//    "versioning": "regex:^((?<compatibility>.*)-v|v*)(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+//  },
+
+  "regexManagers": [
+    {
+      "fileMatch": ["\\.tf$", ".hcl$"],
+      "matchStrings": [
+        // source = "tfr:///terraform-aws-modules/s3-bucket/aws//wrappers?version=3.0.0"
+        // "source\\s*=\\s*\".*?github\\.com[/:](?:(?<prefix>terraform)-(?<cloud>.+?)-)?(?<name>.+?)(?:\\.git)?(?:/.*?)?\\?ref=(?<currentValue>.*?)\""
+        // source = "tfr:///terraform-aws-modules/s3-bucket/aws//wrappers?version=3.0.0"
+        "source\\s*=\\s*\"tfr://(?<registry>.*?)/(?<org>.+?)/(?<name>.+?)/(?<cloud>.+?)(?:/.+?)?\\?version=(?<currentValue>.*?)\""
+      ],
+      "depType": "terragrunt",
+      "datasourceTemplate": "terraform-module",
+      "depNameTemplate": "{{org}}/{{name}}/{{cloud}}",
+      "lookupNameTemplate": "{{org}}/{{name}}/{{cloud}}",
+      "registryUrls": ['{{#if registry}}{{registry}}{{else}}https://registry.terraform.io{{/if}}']
+    }
+  ]
+}
