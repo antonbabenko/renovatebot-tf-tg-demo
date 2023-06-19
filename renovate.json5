@@ -61,13 +61,13 @@
         // source = "tfr:///terraform-aws-modules/s3-bucket/aws//wrappers?version=3.0.0"
         // "source\\s*=\\s*\".*?github\\.com[/:](?:(?<prefix>terraform)-(?<cloud>.+?)-)?(?<name>.+?)(?:\\.git)?(?:/.*?)?\\?ref=(?<currentValue>.*?)\""
         // source = "tfr:///terraform-aws-modules/s3-bucket/aws//wrappers?version=3.0.0"
-        "source\\s*=\\s*\"tfr://(?<registry>.*?)/(?<org>.+?)/(?<name>.+?)/(?<cloud>.+?)(?:/.+?)?\\?version=(?<currentValue>.*?)\""
+        "source\\s*=\\s*\"tfr://(?<registryUrl>.*?)/(?<org>.+?)/(?<name>.+?)/(?<cloud>.+?)(?:/.+?)?\\?version=(?<currentValue>.*?)\""
       ],
 //      "depType": "terragrunt",
       "datasourceTemplate": "terraform-module",
       "depNameTemplate": "{{org}}/{{name}}/{{cloud}}",
       "lookupNameTemplate": "{{org}}/{{name}}/{{cloud}}",
-//      "registryUrls": ['{{#if registry}}{{registry}}{{else}}https://registry.terraform.io{{/if}}']
+//      "registryUrlTemplate": '{{#if registry}}{{registryUrl}}{{else}}https://registry.terraform.io{{/if}}'
     }
   ]
 }
