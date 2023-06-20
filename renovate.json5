@@ -50,6 +50,9 @@
     "pinDigests": true, // Make versions idempotent
   },
 
+  // Lowercase PR- and commit titles.
+  "commitMessageLowerCase": "never",
+
   "regexManagers": [
     {
       "fileMatch": ["\\.tf$", "\\.hcl$"],
