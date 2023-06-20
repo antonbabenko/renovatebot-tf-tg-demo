@@ -1,4 +1,7 @@
-# pr-title-tests
-temp repo for pr-title tests
+# renovatebot-demo
 
-New change2!
+- [x] terraform version
+- [x] terraform modules
+- [x] terraform providers
+- [x] terragrunt version
+- [x] terragrunt modules
