@@ -53,6 +53,9 @@
   // Lowercase PR- and commit titles.
   "commitMessageLowerCase": "never",
 
+  // Rate limit PRs to maximum x created per hour. 0 means no limit.
+  "prHourlyLimit": "0",
+
   "regexManagers": [
     {
       "fileMatch": ["\\.tf$", "\\.hcl$"],
