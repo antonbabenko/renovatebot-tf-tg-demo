@@ -1,4 +1,4 @@
-# renovatebot-demo
+# renovatebot-tf-tg-demo
 
 - [x] terraform version
 - [x] terraform modules
